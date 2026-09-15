@@ -1,6 +1,30 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }],
+  "rewrites": [
+    {
+      "source": "/notes/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(facebookexternalhit|Facebot|WhatsApp|Twitterbot|Slackbot|TelegramBot|LinkedInBot|Discordbot|Pinterest|Embedly|Iframely|SkypeUriPreview|Applebot|Googlebot|bingbot|redditbot|Threads).*"
+        }
+      ],
+      "destination": "/api/share?type=note&slug=:slug"
+    },
+    {
+      "source": "/work/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(facebookexternalhit|Facebot|WhatsApp|Twitterbot|Slackbot|TelegramBot|LinkedInBot|Discordbot|Pinterest|Embedly|Iframely|SkypeUriPreview|Applebot|Googlebot|bingbot|redditbot|Threads).*"
+        }
+      ],
+      "destination": "/api/share?type=project&slug=:slug"
+    },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

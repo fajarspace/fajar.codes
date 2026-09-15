@@ -38,6 +38,7 @@ supabase/
 │                      20260916000001_drop_timeline.sql — removes the unused timeline table
 └── seed.sql           Sample content (generated from src/constants/sample-content.ts)
 scripts/               generate-sitemap.mjs · generate-seed.mjs · generate-covers.mjs
+api/share.ts           Edge Function that serves Open Graph tags to link-preview bots
 ```
 
 The public site works without Supabase: when `VITE_SUPABASE_URL` or the key is missing it renders the bundled sample content, so you can `npm run dev` immediately. The admin needs a real project.
@@ -132,6 +133,14 @@ supabase gen types typescript --linked > src/types/database.ts
 4. In Supabase, add your Vercel domain to **Authentication → URL configuration → Site URL / Redirect URLs**.
 
 The build runs `npm run sitemap` first, so the sitemap includes every published project and note at deploy time. Set up a Vercel *Deploy Hook* and call it after publishing if you want the sitemap to refresh automatically.
+
+### Link previews (Open Graph)
+
+The app is a SPA, so link-preview bots never see the meta tags React sets. `vercel.json` therefore rewrites `/notes/:slug` and `/work/:slug` to the Edge Function in `api/share.ts` **only when the User-Agent is a preview bot** (WhatsApp, Telegram, Slack, X, Facebook, LinkedIn, Discord, …). The function reads the note/project from Supabase and returns plain HTML with `og:title`, `og:description` and the cover as `og:image`. Humans keep getting the app. Every other page falls back to the static tags in `index.html` (`/og.png`).
+
+- Covers and portraits are uploaded as JPEG (≤ 1600 px) because some messengers refuse WebP previews.
+- Previews are cached by the messengers themselves; to re-check after a change, append `?v=2` to the URL or use the platform's debugger (Facebook Sharing Debugger, X Card Validator).
+- Test from a terminal: `curl -A "WhatsApp/2.0" https://your-domain/notes/<slug>` should return the HTML with the tags.
 
 ## Content & design notes
 

@@ -5,10 +5,12 @@
 export interface OptimizeOptions {
   maxEdge?: number
   quality?: number
+  /** Output format. WebP is smaller; JPEG is what every link-preview crawler (WhatsApp, iMessage, …) accepts. */
+  format?: 'image/webp' | 'image/jpeg'
 }
 
 export async function optimizeImage(file: File, options: OptimizeOptions = {}): Promise<File> {
-  const { maxEdge = 1800, quality = 0.84 } = options
+  const { maxEdge = 1800, quality = 0.84, format = 'image/webp' } = options
   if (!file.type.startsWith('image/') || file.type === 'image/svg+xml' || file.type === 'image/gif') {
     return file
   }
@@ -25,14 +27,22 @@ export async function optimizeImage(file: File, options: OptimizeOptions = {}): 
   canvas.height = height
   const context = canvas.getContext('2d')
   if (!context) return file
+  if (format === 'image/jpeg') {
+    // JPEG has no alpha: flatten onto the paper tone instead of black.
+    context.fillStyle = '#f5f4f0'
+    context.fillRect(0, 0, width, height)
+  }
   context.drawImage(bitmap, 0, 0, width, height)
   bitmap.close()
 
-  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/webp', quality))
-  if (!blob || blob.size >= file.size) return file
+  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, format, quality))
+  if (!blob) return file
+  // Keep the original only when it is already the right format and smaller.
+  if (blob.size >= file.size && file.type === format) return file
 
-  const name = file.name.replace(/\.[^.]+$/, '') + '.webp'
-  return new File([blob], name, { type: 'image/webp' })
+  const extension = format === 'image/jpeg' ? 'jpg' : 'webp'
+  const name = file.name.replace(/\.[^.]+$/, '') + `.${extension}`
+  return new File([blob], name, { type: format })
 }
 
 export function fileExtension(file: File): string {

@@ -63,7 +63,7 @@ export default function HomePage() {
       >
         <RevealLines
           as="h1"
-          text="Just Tech Spelunking."
+          text="Tech Spelunking."
           className="font-serif text-4xl leading-[1.05] tracking-tight sm:text-6xl md:col-span-8 lg:text-7xl"
         />
         <Reveal

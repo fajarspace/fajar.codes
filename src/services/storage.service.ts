@@ -4,10 +4,16 @@ import { optimizeImage, randomFileName } from '@/utils/image'
 
 export type StorageFolder = keyof typeof storage.folders
 
+/** Folders whose images end up as og:image — keep those JPEG so every messenger renders the preview. */
+const PREVIEW_FOLDERS: StorageFolder[] = ['noteCover', 'projectCover', 'avatar']
+
 /** Optimises then uploads an image, returning its public URL. */
 export async function uploadImage(file: File, folder: StorageFolder): Promise<string> {
   const client = requireSupabase()
-  const optimized = await optimizeImage(file)
+  const optimized = await optimizeImage(
+    file,
+    PREVIEW_FOLDERS.includes(folder) ? { maxEdge: 1600, quality: 0.82, format: 'image/jpeg' } : {},
+  )
   const path = `${storage.folders[folder]}/${randomFileName(optimized)}`
 
   const { error } = await client.storage.from(storage.bucket).upload(path, optimized, {
