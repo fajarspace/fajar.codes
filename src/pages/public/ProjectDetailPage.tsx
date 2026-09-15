@@ -118,7 +118,7 @@ export default function ProjectDetailPage() {
 
         {p.coverUrl ? (
           <Container className="pb-16">
-            <SmartImage src={p.coverUrl} alt={`${p.title} cover`} ratio="16 / 9" priority />
+            <SmartImage src={p.coverUrl} alt={`${p.title} cover`} ratio="auto" priority />
           </Container>
         ) : null}
 

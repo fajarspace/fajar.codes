@@ -149,10 +149,10 @@
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
-  text-decoration-color: var(--line);
+  text-decoration-color: var(--fg-muted);
   transition: text-decoration-color 200ms;
   &:hover {
-    text-decoration-color: currentColor;
+    text-decoration-color: var(--accent);
   }
 }
 

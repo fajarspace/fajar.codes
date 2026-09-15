@@ -40,16 +40,22 @@
   text-wrap: pretty;
 }
 
+/* Links: accent underline so they read as links in both themes; hover turns into a highlighter. */
 .prose a {
+  color: var(--fg);
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-  text-decoration-color: var(--line);
-  transition: text-decoration-color 200ms;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: var(--accent);
+  transition:
+    background-color 150ms,
+    color 150ms;
 }
 
 .prose a:hover {
-  text-decoration-color: currentColor;
+  background-color: var(--accent);
+  color: #181818;
+  text-decoration-color: transparent;
 }
 
 .prose strong {

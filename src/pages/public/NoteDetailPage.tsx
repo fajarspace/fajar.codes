@@ -121,9 +121,9 @@ export default function NoteDetailPage() {
         </Container>
 
         {n.coverUrl ? (
-          <Container className="pb-12">
-            <div className="mx-auto max-w-3xl">
-              <SmartImage src={n.coverUrl} alt="" ratio="16 / 9" priority />
+          <Container className="pb-10">
+            <div className="mx-auto max-w-2xl">
+              <SmartImage src={n.coverUrl} alt="" ratio="auto" priority wrapperClassName="mx-auto max-w-xl" />
             </div>
           </Container>
         ) : null}

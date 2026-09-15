@@ -8,7 +8,7 @@ export function ProjectGallery({ images }: { images: ProjectImage[] }) {
     <div className="grid gap-8 sm:grid-cols-2">
       {images.map((image, i) => (
         <figure key={image.id} className={i % 3 === 0 ? 'sm:col-span-2' : undefined}>
-          <SmartImage src={image.imageUrl} alt={image.caption ?? ''} ratio={i % 3 === 0 ? '16 / 9' : '4 / 3'} />
+          <SmartImage src={image.imageUrl} alt={image.caption ?? ''} ratio="auto" />
           <figcaption className="mt-2 flex gap-3 text-xs text-fg-muted">
             <span className="tabular">{padIndex(i + 1)}</span>
             <span>{image.caption}</span>

@@ -4,25 +4,29 @@ import { cn } from '@/utils/cn'
 interface SmartImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> {
   src: string | null | undefined
   alt: string
-  /** CSS aspect ratio, e.g. "16 / 10". Reserves space so the layout never shifts. */
+  /**
+   * CSS aspect ratio, e.g. "16 / 10" — the box is reserved and the image is cropped to fill it.
+   * Pass "auto" to show the whole image at its natural ratio (no cropping).
+   */
   ratio?: string
   priority?: boolean
   wrapperClassName?: string
 }
 
 /**
- * Lazy image with reserved aspect ratio, a placeholder tone while loading,
- * and a typographic fallback when no source is available.
+ * Lazy image with a placeholder tone while loading and a typographic fallback when no source is available.
+ * Fixed ratios reserve space so the layout never shifts; "auto" keeps the full image visible.
  */
 export function SmartImage({ src, alt, ratio = '16 / 10', priority = false, className, wrapperClassName, ...rest }: SmartImageProps) {
   const [loaded, setLoaded] = useState(false)
   const [failed, setFailed] = useState(false)
   const showFallback = !src || failed
+  const natural = ratio === 'auto' && !showFallback
 
   return (
     <div
       className={cn('relative overflow-hidden border border-line bg-bg-elevated', wrapperClassName)}
-      style={{ aspectRatio: ratio }}
+      style={natural ? undefined : { aspectRatio: ratio === 'auto' ? '16 / 10' : ratio }}
     >
       {showFallback ? (
         <div className="absolute inset-0 flex items-end p-4">
@@ -38,7 +42,8 @@ export function SmartImage({ src, alt, ratio = '16 / 10', priority = false, clas
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
           className={cn(
-            'absolute inset-0 h-full w-full object-cover transition-opacity duration-500',
+            'transition-opacity duration-500',
+            natural ? 'block h-auto w-full' : 'absolute inset-0 h-full w-full object-cover',
             loaded ? 'opacity-100' : 'opacity-0',
             className,
           )}
