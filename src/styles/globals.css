@@ -1,0 +1,222 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   Semantic colors are CSS variables so the same utility (bg-bg, text-fg, ...)
+   flips automatically when the `.dark` class is on <html>.
+--------------------------------------------------------------------------- */
+:root {
+  --bg: #f5f4f0;
+  --bg-elevated: #eeede8;
+  --fg: #181818;
+  --fg-muted: #737373;
+  --line: #d8d6d0;
+  --accent: #e8ff47;
+  --accent-fg: #181818;
+  --selection: #e8ff47;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #111111;
+  --bg-elevated: #181818;
+  --fg: #ecebe6;
+  --fg-muted: #8f8f8a;
+  --line: #2a2a28;
+  --accent: #e8ff47;
+  --accent-fg: #111111;
+  --selection: #e8ff47;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  html {
+    background-color: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    min-height: 100dvh;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--selection);
+    color: #181818;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  button,
+  [role='button'] {
+    cursor: pointer;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  hr {
+    border-color: var(--line);
+  }
+
+  /* Highlighter: the same accent as ::selection, made permanent. */
+  mark {
+    background: var(--accent);
+    color: #181818;
+    padding: 0.04em 0.14em;
+    margin-inline: -0.04em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities & components
+--------------------------------------------------------------------------- */
+@utility container-editorial {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 80rem;
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 3rem;
+  }
+}
+
+@utility label-caps {
+  font-size: var(--text-2xs);
+  line-height: 1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+
+@utility link-underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--line);
+  transition: text-decoration-color 200ms;
+  &:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+@utility hairline {
+  border-top: 1px solid var(--line);
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-elevated);
+  border-radius: 2px;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--fg) 5%, transparent), transparent);
+    animation: skeleton-sweep 1.6s infinite;
+  }
+}
+
+@keyframes skeleton-sweep {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes accent-flash {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.accent-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  background: var(--accent);
+  mix-blend-mode: multiply;
+  animation: accent-flash 1200ms ease-out forwards;
+}
+
+.dark .accent-flash {
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+/* Fine-pointer only helpers */
+@media (hover: hover) and (pointer: fine) {
+  .pointer-fine\:block {
+    display: block;
+  }
+}
+
+@import './prose.css';

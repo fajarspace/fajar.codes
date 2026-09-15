@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <rect width="1200" height="1500" fill="#EEEDE8"/>
+  <rect x="180" y="300" width="840" height="675" fill="#F5F4F0" stroke="#181818" stroke-width="3"/><rect x="240" y="390" width="360" height="10" fill="#D8D6D0"/><rect x="240" y="450" width="600" height="10" fill="#D8D6D0"/><rect x="240" y="510.00000000000006" width="480" height="10" fill="#E8FF47"/>
+  <text x="60" y="1440" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" letter-spacing="4" fill="#737373">MEJA, 01:00 — PLACEHOLDER</text>
+</svg>

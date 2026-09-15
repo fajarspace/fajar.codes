@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#F5F4F0"/>
+  <rect x="1000" y="140" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="196" width="352" height="10" fill="#D8D6D0"/><rect x="1000" y="252" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="308" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="364" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="420" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="476" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="532" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="588" width="456" height="10" fill="#D8D6D0"/><rect x="1000" y="644" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="700" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="756" width="372" height="10" fill="#D8D6D0"/><rect x="1000" y="812" width="520" height="10" fill="#D8D6D0"/><rect x="1000" y="868" width="520" height="10" fill="#D8D6D0"/>
+  <text x="100" y="140" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" letter-spacing="4" fill="#737373">02 — WARUNG-POS-2</text>
+  <text x="100" y="560" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" font-size="150" fill="#181818">Rp 1.240.000</text>
+  <text x="100" y="640" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" fill="#737373">End-of-day summary</text>
+  <line x1="100" y1="900" x2="1500" y2="900" stroke="#181818" stroke-width="1.5"/>
+  <text x="100" y="940" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="3" fill="#737373">FAJAR.CODES</text>
+  <text x="1500" y="940" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="3" fill="#737373">JAKARTA, INDONESIA</text>
+</svg>

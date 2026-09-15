@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#EEEDE8"/>
+  <rect x="240" y="420" width="720" height="420" fill="none" stroke="#181818" stroke-width="3"/><circle cx="420" cy="912" r="60" fill="#181818"/><circle cx="780" cy="912" r="60" fill="#181818"/><rect x="240" y="360" width="720" height="60" fill="#E8FF47"/>
+  <text x="60" y="1140" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" letter-spacing="4" fill="#737373">GEROBAK, 06:00 — PLACEHOLDER</text>
+</svg>

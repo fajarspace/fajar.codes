@@ -1,0 +1,47 @@
+{
+  "name": "fajar.codes",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "prebuild": "npm run sitemap",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "oxlint",
+    "typecheck": "tsc -b --noEmit",
+    "sitemap": "node --experimental-strip-types --no-warnings scripts/generate-sitemap.mjs",
+    "seed:generate": "node --experimental-strip-types --no-warnings scripts/generate-seed.mjs",
+    "covers:generate": "node scripts/generate-covers.mjs"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "@supabase/supabase-js": "^2.116.0",
+    "framer-motion": "^13.3.0",
+    "github-slugger": "^2.0.0",
+    "lucide-react": "^1.46.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-hook-form": "^7.88.0",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.18.3",
+    "rehype-highlight": "^7.0.2",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  },
+  "engines": {
+    "node": ">=22.6"
+  }
+}

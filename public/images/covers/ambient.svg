@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#F5F4F0"/>
+  <circle cx="1180" cy="440" r="220" fill="none" stroke="#181818" stroke-width="2"/><circle cx="1180" cy="440" r="150" fill="none" stroke="#D8D6D0" stroke-width="2"/><circle cx="1180" cy="440" r="60" fill="#E8FF47"/>
+  <text x="100" y="140" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" letter-spacing="4" fill="#737373">06 — AMBIENT</text>
+  <text x="100" y="560" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" font-size="150" fill="#181818">Ambient</text>
+  <text x="100" y="640" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" fill="#737373">It rains in the tab</text>
+  <line x1="100" y1="900" x2="1500" y2="900" stroke="#181818" stroke-width="1.5"/>
+  <text x="100" y="940" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="3" fill="#737373">FAJAR.CODES</text>
+  <text x="1500" y="940" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="3" fill="#737373">JAKARTA, INDONESIA</text>
+</svg>

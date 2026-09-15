@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F5F4F0"/>
+  <text x="80" y="110" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="4" fill="#737373">01 — INDEX</text>
+  <text x="80" y="300" font-family="'Instrument Serif', Georgia, serif" font-size="92" fill="#181818">Fajar builds useful</text>
+  <text x="80" y="400" font-family="'Instrument Serif', Georgia, serif" font-size="92" fill="#181818">things for the web.</text>
+  <circle cx="1060" cy="110" r="22" fill="#E8FF47"/>
+  <line x1="80" y1="530" x2="1120" y2="530" stroke="#181818" stroke-width="1.5"/>
+  <text x="80" y="575" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="3" fill="#737373">FAJAR.CODES</text>
+  <text x="1120" y="575" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="3" fill="#737373">JAKARTA, INDONESIA</text>
+</svg>
