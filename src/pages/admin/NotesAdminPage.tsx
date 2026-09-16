@@ -92,7 +92,7 @@ export default function NotesAdminPage() {
               </div>
               <div className="flex flex-wrap gap-1">
                 {n.status === 'published' ? (
-                  <ButtonLink to={`/notes/${n.slug}`} size="sm" variant="ghost" external>
+                  <ButtonLink to={`/${n.slug}`} size="sm" variant="ghost" external>
                     <Eye className="size-3.5" /> View
                   </ButtonLink>
                 ) : null}

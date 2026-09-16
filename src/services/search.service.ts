@@ -30,7 +30,7 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     kind: 'note',
     title: n.title,
     subtitle: n.tags.map((t) => t.name).join(', ') || 'note',
-    href: `/notes/${n.slug}`,
+    href: `/${n.slug}`,
     keywords: [...n.tags.map((t) => t.slug), n.excerpt.toLowerCase()],
   }))
 

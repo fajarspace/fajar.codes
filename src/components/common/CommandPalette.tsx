@@ -114,7 +114,7 @@ function Panel({ onClose }: { onClose: () => void }) {
     }
     if (entry.href === '#random') {
       const note = await getRandomNote()
-      if (note) navigate(`/notes/${note.slug}`)
+      if (note) navigate(`/${note.slug}`)
       else toast({ title: 'No notes yet.' })
       return
     }

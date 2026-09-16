@@ -2,7 +2,7 @@
  * Link-preview endpoint (Vercel Edge Function).
  *
  * The site is a SPA, so crawlers (WhatsApp, Telegram, Slack, X, Facebook, …) never run the JS
- * that sets per-page Open Graph tags. vercel.json rewrites /notes/:slug and /work/:slug to this
+ * that sets per-page Open Graph tags. vercel.json rewrites /:slug (notes) and /work/:slug to this
  * function *only* when the User-Agent looks like a link-preview bot; humans keep getting the app.
  */
 export const config = { runtime: 'edge' }
@@ -66,12 +66,12 @@ async function metaFor(type: string | null, slug: string | null): Promise<Meta> 
 
   if (type === 'note') {
     const note = await fetchRow<NoteRow>('notes', slug, 'title,excerpt,cover_url,published_at,updated_at', 'status=eq.published')
-    if (!note) return { ...fallback, url: `${SITE_URL}/notes/${slug}` }
+    if (!note) return { ...fallback, url: `${SITE_URL}/${slug}` }
     return {
       title: `${note.title} — Fajar`,
       description: note.excerpt || DEFAULT_DESCRIPTION,
       image: absolute(note.cover_url),
-      url: `${SITE_URL}/notes/${slug}`,
+      url: `${SITE_URL}/${slug}`,
       type: 'article',
       publishedAt: note.published_at,
       updatedAt: note.updated_at,

@@ -16,7 +16,7 @@ export function NoteList({ notes, view = 'list', startIndex = 1 }: NoteListProps
       {notes.map((note, i) => (
         <li key={note.id} className="border-b border-line last:border-b-0">
           <Link
-            to={`/notes/${note.slug}`}
+            to={`/${note.slug}`}
             className={
               view === 'index'
                 ? 'group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-3 py-3 sm:grid-cols-[3rem_1fr_7rem]'

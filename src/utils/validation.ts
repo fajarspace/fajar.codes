@@ -38,9 +38,12 @@ export const projectSchema = z.object({
 })
 export type ProjectFormValues = z.infer<typeof projectSchema>
 
+/** Top-level routes a note slug must not collide with (notes are served at /<slug>). */
+const reservedSlugs = ['work', 'notes', 'photos', 'admin', 'api', 'assets', 'images']
+
 export const noteSchema = z.object({
   title: z.string().trim().min(1, 'Title is required').max(160),
-  slug,
+  slug: slug.refine((v) => !reservedSlugs.includes(v), 'This slug is reserved for a page'),
   excerpt: z.string().trim().min(1, 'An excerpt is required').max(300),
   content: z.string().min(1, 'Write something first'),
   coverUrl: z.string().trim(),

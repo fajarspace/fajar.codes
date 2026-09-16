@@ -63,7 +63,7 @@ const entry = (path, lastmod, changefreq, priority) =>
 const urls = [
   ...staticRoutes.map((r) => entry(r.path, iso(), r.changefreq, r.priority)),
   ...data.projects.map((p) => entry(`/work/${p.slug}`, iso(p.updated_at), 'monthly', '0.7')),
-  ...data.notes.map((n) => entry(`/notes/${n.slug}`, iso(n.updated_at), 'monthly', '0.7')),
+  ...data.notes.map((n) => entry(`/${n.slug}`, iso(n.updated_at), 'monthly', '0.7')),
 ]
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`

@@ -33,7 +33,7 @@ export default function NoteDetailPage() {
     description: note.data?.excerpt,
     image: note.data?.coverUrl ?? site.ogImage,
     type: 'article',
-    canonicalPath: `/notes/${slug}`,
+    canonicalPath: `/${slug}`,
     publishedTime: note.data?.publishedAt ?? null,
     modifiedTime: note.data?.updatedAt ?? null,
     jsonLd: note.data
@@ -44,7 +44,7 @@ export default function NoteDetailPage() {
           description: note.data.excerpt,
           datePublished: note.data.publishedAt,
           dateModified: note.data.updatedAt,
-          url: `${site.url}/notes/${note.data.slug}`,
+          url: `${site.url}/${note.data.slug}`,
           image: note.data.coverUrl
             ? note.data.coverUrl.startsWith('/')
               ? `${site.url}${note.data.coverUrl}`
@@ -53,7 +53,7 @@ export default function NoteDetailPage() {
           keywords: note.data.tags.map((t) => t.name).join(', '),
           author: { '@type': 'Person', name: site.author.name, url: site.url },
           publisher: { '@type': 'Person', name: site.author.name },
-          mainEntityOfPage: `${site.url}/notes/${note.data.slug}`,
+          mainEntityOfPage: `${site.url}/${note.data.slug}`,
         }
       : undefined,
   })

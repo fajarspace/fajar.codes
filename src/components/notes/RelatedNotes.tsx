@@ -12,7 +12,7 @@ export function RelatedNotes({ notes }: { notes: Note[] }) {
       <ul className="mt-4 divide-y divide-line">
         {notes.map((note) => (
           <li key={note.id}>
-            <Link to={`/notes/${note.slug}`} className="group flex items-baseline justify-between gap-4 py-3">
+            <Link to={`/${note.slug}`} className="group flex items-baseline justify-between gap-4 py-3">
               <span className="font-serif text-xl leading-snug group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
                 {note.title}
               </span>

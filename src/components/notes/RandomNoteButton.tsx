@@ -21,7 +21,7 @@ export function RandomNoteButton({ className, withIcon = false, label = 'Random 
     setBusy(true)
     try {
       const note = await getRandomNote(slug)
-      if (note) navigate(`/notes/${note.slug}`)
+      if (note) navigate(`/${note.slug}`)
       else toast({ title: 'No notes to pick from yet.' })
     } finally {
       setBusy(false)

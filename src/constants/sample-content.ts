@@ -167,7 +167,7 @@ The app is a thin React Native shell over a local SQLite database. Every sale is
 
 Idempotency keys on every mutation. Retry with backoff. A sync indicator that is honest about what has and has not left the device.
 
-I spent two afternoons a week at the cart for the first month. Most of what I learned is in [a separate note](/notes/what-shipping-a-pos-to-street-vendors-taught-me).
+I spent two afternoons a week at the cart for the first month. Most of what I learned is in [a separate note](/what-shipping-a-pos-to-street-vendors-taught-me).
 
 ## Result
 
@@ -720,7 +720,7 @@ export const sampleNowItems: NowItem[] = [
     type: 'reading',
     title: 'Designing Data-Intensive Applications',
     description: 'The replication chapters, again, with a specific sync bug in mind.',
-    url: '/notes/reading-list-mid-2026',
+    url: '/reading-list-mid-2026',
     isActive: true,
     updatedAt: at('2026-09-03'),
   },

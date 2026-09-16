@@ -130,7 +130,7 @@ export default function NoteEditorPage() {
     <>
       <AdminPageHeader
         title={isNew ? 'New note' : (existing.data?.title ?? 'Edit note')}
-        description={isNew ? 'Drafts are private until you flip the status.' : `/notes/${existing.data?.slug ?? ''} · ${readingTime} min read`}
+        description={isNew ? 'Drafts are private until you flip the status.' : `/${existing.data?.slug ?? ''} · ${readingTime} min read`}
         actions={
           <>
             <ButtonLink to="/admin/notes" size="sm" variant="ghost">
@@ -162,7 +162,7 @@ export default function NoteEditorPage() {
             <Field label="Title" htmlFor="title" error={formState.errors.title?.message}>
               <Input id="title" {...register('title')} aria-invalid={Boolean(formState.errors.title)} />
             </Field>
-            <Field label="Slug" htmlFor="slug" error={formState.errors.slug?.message} hint="Public URL: /notes/<slug>">
+            <Field label="Slug" htmlFor="slug" error={formState.errors.slug?.message} hint="Public URL: /<slug>">
               <Input id="slug" {...register('slug')} aria-invalid={Boolean(formState.errors.slug)} />
             </Field>
             <Field label="Excerpt" htmlFor="excerpt" error={formState.errors.excerpt?.message} hint="Shown in lists and as the meta description.">
