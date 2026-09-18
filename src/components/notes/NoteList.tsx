@@ -1,29 +1,27 @@
 import { Link } from 'react-router-dom'
 import type { Note } from '@/types/content'
-import { formatDate, padIndex } from '@/utils/format'
+import { formatDate } from '@/utils/format'
 
 export type NoteView = 'list' | 'index'
 
 interface NoteListProps {
   notes: Note[]
   view?: NoteView
-  startIndex?: number
 }
 
-export function NoteList({ notes, view = 'list', startIndex = 1 }: NoteListProps) {
+export function NoteList({ notes, view = 'list' }: NoteListProps) {
   return (
     <ul>
-      {notes.map((note, i) => (
+      {notes.map((note) => (
         <li key={note.id} className="border-b border-line last:border-b-0">
           <Link
             to={`/${note.slug}`}
             className={
               view === 'index'
-                ? 'group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-3 py-3 sm:grid-cols-[3rem_1fr_7rem]'
-                : 'group grid grid-cols-[2.5rem_1fr] gap-3 py-6 sm:grid-cols-[3rem_1fr_9rem] sm:gap-6'
+                ? 'group grid grid-cols-[1fr_auto] items-baseline gap-3 py-3 sm:grid-cols-[1fr_7rem]'
+                : 'group grid grid-cols-1 gap-3 py-6 sm:grid-cols-[1fr_9rem] sm:gap-6'
             }
           >
-            <span className="tabular pt-1 text-xs text-fg-muted">{padIndex(startIndex + i)}</span>
             {view === 'index' ? (
               <>
                 <span className="flex min-w-0 items-baseline gap-3">
