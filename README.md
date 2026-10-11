@@ -20,7 +20,7 @@ src/
 │   ├── layout/        PublicLayout, AdminLayout
 │   ├── navigation/    Navbar, MobileMenu, Footer
 │   ├── project/       ProjectList/Row, HoverThumbnail, ProjectFilters, ProjectGallery, NextProject
-│   ├── notes/         NoteList, NoteFilters, ReadingProgress, TableOfContents, ShareButton, …
+│   ├── notes/         NoteList, NoteFilters, ReadingProgress, TableOfContents, ShareButton, Comments, …
 │   └── admin/         Field primitives, ImageUpload, MarkdownEditor, GalleryManager, RequireAdmin, …
 ├── pages/
 │   ├── public/        Home, Work, ProjectDetail, Notes, NoteDetail, Photos, NotFound
@@ -133,6 +133,20 @@ supabase gen types typescript --linked > src/types/database.ts
 4. In Supabase, add your Vercel domain to **Authentication → URL configuration → Site URL / Redirect URLs**.
 
 The build runs `npm run sitemap` first, so the sitemap includes every published project and note at deploy time. Set up a Vercel *Deploy Hook* and call it after publishing if you want the sitemap to refresh automatically.
+
+### Comments (Disqus)
+
+Notes carry a Disqus thread under the related-notes block. Set the shortname and it appears; leave it empty and the whole section — script included — is never rendered.
+
+```env
+VITE_DISQUS_SHORTNAME=your-shortname   # Disqus → Admin → Settings → General → Shortname
+```
+
+- Register the site at [disqus.com](https://disqus.com/admin/create/) and add your domain under **Settings → Advanced → Trusted Domains** (include `localhost` while developing).
+- The embed script only loads once the reader scrolls near the comments, so it costs nothing on the rest of the page.
+- Threads are keyed by `note:<uuid>`, not by URL, so renaming a slug keeps the existing comments.
+- Disqus picks its light/dark skin from the surrounding background; the thread is re-rendered when the theme toggle flips, and you can force one in **Settings → Appearance → Color scheme**.
+- Want comments on project case studies too? Drop the same `<Comments …>` line into `src/pages/public/ProjectDetailPage.tsx`.
 
 ### Link previews (Open Graph)
 

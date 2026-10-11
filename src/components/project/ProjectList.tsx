@@ -7,29 +7,22 @@ import { ProjectRow, type ProjectView } from './ProjectRow'
 interface ProjectListProps {
   projects: Project[]
   view?: ProjectView
-  /** Start numbering from this index (1-based). */
-  startIndex?: number
 }
 
-export function ProjectList({ projects, view = 'list', startIndex = 1 }: ProjectListProps) {
+export function ProjectList({ projects, view = 'list' }: ProjectListProps) {
   const finePointer = useIsFinePointer()
   const [hovered, setHovered] = useState<Project | null>(null)
+  // The list view already shows each cover inline, so the cursor preview is only for the compact index.
+  const showHoverPreview = finePointer && view === 'index'
 
   return (
     <>
       <ul>
-        {projects.map((project, i) => (
-          <ProjectRow
-            key={project.id}
-            project={project}
-            index={startIndex + i}
-            view={view}
-            finePointer={finePointer}
-            onHover={setHovered}
-          />
+        {projects.map((project) => (
+          <ProjectRow key={project.id} project={project} view={view} onHover={showHoverPreview ? setHovered : undefined} />
         ))}
       </ul>
-      {finePointer ? <HoverThumbnail project={hovered} /> : null}
+      {showHoverPreview ? <HoverThumbnail project={hovered} /> : null}
     </>
   )
 }

@@ -17,6 +17,7 @@ import { TableOfContents } from '@/components/notes/TableOfContents'
 import { ShareButton } from '@/components/notes/ShareButton'
 import { RelatedNotes } from '@/components/notes/RelatedNotes'
 import { RandomNoteButton } from '@/components/notes/RandomNoteButton'
+import { Comments } from '@/components/notes/Comments'
 import NotFoundPage from './NotFoundPage'
 
 export default function NoteDetailPage() {
@@ -150,12 +151,18 @@ export default function NoteDetailPage() {
         </Container>
 
         {related.data && related.data.length > 0 ? (
-          <Container className="pb-8">
+          <Container className="pb-12">
             <div className="mx-auto max-w-2xl">
               <RelatedNotes notes={related.data} />
             </div>
           </Container>
         ) : null}
+
+        <Container className="pb-8">
+          <div className="mx-auto max-w-2xl">
+            <Comments identifier={`note:${n.id}`} title={n.title} path={`/${n.slug}`} />
+          </div>
+        </Container>
       </article>
     </>
   )
