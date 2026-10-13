@@ -39,6 +39,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), tailwindcss(), siteUrlPlugin(siteUrl)],
+    server: {
+      // lvh.me and its subdomains resolve to 127.0.0.1. Disqus refuses "localhost" as a trusted
+      // domain, so open http://lvh.me:5173 when you need to test comments locally.
+      allowedHosts: [".lvh.me"],
+    },
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
