@@ -5,12 +5,7 @@ import { site } from "@/constants/site";
 import { facts } from "@/constants/facts";
 import { useQuery } from "@/hooks/useQuery";
 import { useSeo } from "@/hooks/useSeo";
-import {
-  getPublicProfile,
-  listNotes,
-  listNowItems,
-  listProjects,
-} from "@/services";
+import { getPublicProfile, listNotes, listNowItems } from "@/services";
 import type { NowItem, Profile } from "@/types/content";
 import { labels } from "@/utils/format";
 import { Container } from "@/components/common/Container";
@@ -23,7 +18,6 @@ import {
 } from "@/components/common/Skeleton";
 import { EmptyState, ErrorState } from "@/components/common/States";
 import { SmartImage } from "@/components/common/SmartImage";
-import { ProjectList } from "@/components/project/ProjectList";
 import { NoteList } from "@/components/notes/NoteList";
 
 export default function HomePage() {
@@ -49,10 +43,7 @@ export default function HomePage() {
 
   const profile = useQuery("profile", getPublicProfile);
   const now = useQuery("now:active", () => listNowItems({ activeOnly: true }));
-  const featured = useQuery("projects:featured", () =>
-    listProjects({ featuredOnly: true, limit: 4 }),
-  );
-  const notes = useQuery("notes:latest", () => listNotes({ limit: 3 }));
+  const notes = useQuery("notes:latest", () => listNotes({ limit: 6 }));
 
   return (
     <>
@@ -110,39 +101,7 @@ export default function HomePage() {
         )}
       </Container>
 
-      {/* 03 — Work */}
-      <Container as="section" id="work" className="pb-20">
-        <SectionHeading
-          label="Selected work"
-          title={
-            <>
-              A few things that <em>shipped</em>.
-            </>
-          }
-          aside={
-            <Link
-              to="/work"
-              className="link-underline inline-flex items-center gap-1"
-            >
-              All projects <ArrowRight className="size-3" />
-            </Link>
-          }
-        />
-        {featured.status === "error" ? (
-          <ErrorState error={featured.error} onRetry={featured.refetch} />
-        ) : featured.isLoading ? (
-          <SkeletonRows rows={4} />
-        ) : featured.data && featured.data.length > 0 ? (
-          <ProjectList projects={featured.data} />
-        ) : (
-          <EmptyState
-            title="No projects yet."
-            description="They are on the way."
-          />
-        )}
-      </Container>
-
-      {/* 04 — Notes */}
+      {/* 03 — Notes */}
       <Container as="section" id="notes" className="pb-20">
         <SectionHeading
           label="Latest notes"
@@ -158,7 +117,7 @@ export default function HomePage() {
         {notes.status === "error" ? (
           <ErrorState error={notes.error} onRetry={notes.refetch} />
         ) : notes.isLoading ? (
-          <SkeletonRows rows={3} />
+          <SkeletonRows rows={6} />
         ) : notes.data && notes.data.length > 0 ? (
           <NoteList notes={notes.data} />
         ) : (
@@ -169,13 +128,13 @@ export default function HomePage() {
         )}
       </Container>
 
-      {/* 05 — Facts */}
+      {/* 04 — Facts */}
       <Container as="section" id="facts" className="pb-20">
         <SectionHeading label="Random thoughts" />
         <RandomFacts />
       </Container>
 
-      {/* 06 — Contact */}
+      {/* 05 — Contact */}
       <Container as="section" id="contact" className="pb-8">
         <SectionHeading label="Contact" />
         <ContactBlock profile={profile.data} />
